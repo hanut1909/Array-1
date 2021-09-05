@@ -1,0 +1,33 @@
+// Time Complexity : O(n)
+// Space Complexity : O(n)
+// Did this code successfully run on Leetcode : yes
+// Three line explanation of solution in plain english
+// we take two pass method for this question from left and then form right
+// we multiply all elements left of a particular element and put in separate result array
+// then we multiply the result array from right to left
+
+// Your code here along with comments explaining your approach
+class Solution(object):
+    def productExceptSelf(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        #l=0
+        n=len(nums)
+        result=[1 for i in range(len(nums))]
+        #left pass
+        #result[0]=1
+        rollprod=1
+        for i in range(1,n):
+            rollprod=rollprod*nums[i-1]
+            result[i]=rollprod
+        #print(result)
+        #right pass
+        #result[n-1]=1
+        rollprod=1
+        for i in range(n-2,-1,-1):
+            rollprod=rollprod*nums[i+1]
+            result[i]=result[i]*rollprod
+        #print(result)
+        return result
