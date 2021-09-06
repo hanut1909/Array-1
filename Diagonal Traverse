@@ -1,0 +1,47 @@
+// Time Complexity : O(n)
+// Space Complexity : O(n)
+// Did this code successfully run on Leetcode : yes
+// Three line explanation of solution in plain english
+
+// Your code here along with comments explaining your approach
+
+
+class Solution(object):
+    def findDiagonalOrder(self, mat):
+        """
+        :type mat: List[List[int]]
+        :rtype: List[int]
+        """
+        dir=1
+        m=len(mat)
+        n=len(mat[0])
+        i=0
+        j=0
+        k=0
+        res=[]
+        while(k<m*n):
+            if(dir==1):             #up
+                while(i>=0 and j<n):
+                    res.append(mat[i][j])
+                    i-=1
+                    j+=1
+                    k+=1
+                if(i<0 and j<=n-1):
+                    i=0
+                if(j==n):
+                    i+=2
+                    j-=1
+            else:                   #down
+                while(j>=0 and i<m):
+                    res.append(mat[i][j])
+                    i+=1
+                    j-=1
+                    k+=1
+                if(j<0 and i<=m-1):
+                    j=0
+                if(i==m):
+                    j+=2
+                    i-=1
+            dir=dir*-1
+        return res
+            
